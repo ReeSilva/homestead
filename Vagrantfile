@@ -15,7 +15,9 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 	end
 
 	Homestead.configure(config, YAML::load(File.read(homesteadYamlPath)))
-
+  config.vm.provider :virtualbox do |vb|
+    vb.name="racha"
+  end
 	if File.exists? afterScriptPath then
 		config.vm.provision "shell", path: afterScriptPath
 	end
